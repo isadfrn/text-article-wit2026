@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cp /d/dev/text-masters-qualification/styles/abntex2cite.sty /d/dev/text-article-wit2026/ && cp /d/dev/text-masters-qualification/styles/abntex2-alf.bst /d/dev/text-article-wit2026/)",
+      "Bash(ls /d/dev/text-article-wit2026/*.sty /d/dev/text-article-wit2026/*.bst)"
+    ]
+  }
+}

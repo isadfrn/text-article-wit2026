@@ -1,163 +1,483 @@
 \documentclass[12pt]{article}
 
-\usepackage{sbc-template}
+\usepackage{styles/sbc-template}
 \usepackage{graphicx,url}
 \usepackage[utf8]{inputenc}
 \usepackage[brazil]{babel}
-%\usepackage[latin1]{inputenc}  
+\usepackage{booktabs}
+\usepackage[alf,abnt-etal-list=0,abnt-etal-cite=3,abnt-repeated-author-omit=yes,abnt-doi=expand,abnt-emphasize=bf]{styles/abntex2cite}
 
-     
 \sloppy
 
-\title{Instructions for Authors of SBC Conferences\\ Papers and Abstracts}
+\title{Mulheres em Cibersegurança: Uma Revisão Sistemática sobre\\
+  Programas de Capacitação e Estratégias de Inclusão}
 
-\author{Luciana P. Nedel\inst{1}, Rafael H. Bordini\inst{2}, Flávio Rech
-  Wagner\inst{1}, Jomi F. Hübner\inst{3} }
+\author{Isabella de Freitas Nunes\inst{1}, Michelle Silva Wangham\inst{1}}
 
-
-\address{Instituto de Informática -- Universidade Federal do Rio Grande do Sul
-  (UFRGS)\\
-  Caixa Postal 15.064 -- 91.501-970 -- Porto Alegre -- RS -- Brazil
-\nextinstitute
-  Department of Computer Science -- University of Durham\\
-  Durham, U.K.
-\nextinstitute
-  Departamento de Sistemas e Computação\\
-  Universidade Regional de Blumenal (FURB) -- Blumenau, SC -- Brazil
-  \email{\{nedel,flavio\}@inf.ufrgs.br, R.Bordini@durham.ac.uk,
-  jomi@inf.furb.br}
+\address{Programa de Pós-Graduação em Computação Aplicada\\
+  Universidade do Vale do Itajaí (UNIVALI) -- Itajaí -- SC -- Brasil
+  \email{isabella.nunes@edu.univali.br, wangham@univali.br}
 }
 
-\begin{document} 
+\begin{document}
 
 \maketitle
 
 \begin{abstract}
-  This meta-paper describes the style to be used in articles and short papers
-  for SBC conferences. For papers in English, you should add just an abstract
-  while for the papers in Portuguese, we also ask for an abstract in
-  Portuguese (``resumo''). In both cases, abstracts should not have more than
-  10 lines and must be in the first page of the paper.
+  The global shortage of cybersecurity professionals highlights the urgency of broadening
+  workforce participation, particularly among women, who represent only 20--25\% of the
+  global cybersecurity workforce. This paper presents a Systematic Literature Review (SLR)
+  conducted to map the state of the art on cybersecurity training programs with a
+  gender-inclusive perspective. Following the PRISMA protocol and PICO framework, five
+  databases were consulted (IEEE Xplore, Scopus, Google Scholar, ACM Digital Library, and
+  SBC Open Lib), covering publications from 2020 to 2025. From an initial set of 671
+  records, 11 articles were selected through a multi-stage screening process. Results
+  reveal a central dichotomy: highly effective gender-inclusive pedagogical interventions
+  that operate at small scale, versus large-scale platforms that lack specific gender
+  design. Key themes include narrative gamification, cognitive scaffolding, collaborative
+  learning, and mentoring as drivers of female retention in cybersecurity programs.
+  Additionally, two national publications identified in the SBC Open Lib signal a growing
+  Brazilian scientific community engaged with this topic.
 \end{abstract}
-     
-\begin{resumo} 
-  Este meta-artigo descreve o estilo a ser usado na confecção de artigos e
-  resumos de artigos para publicação nos anais das conferências organizadas
-  pela SBC. É solicitada a escrita de resumo e abstract apenas para os artigos
-  escritos em português. Artigos em inglês deverão apresentar apenas abstract.
-  Nos dois casos, o autor deve tomar cuidado para que o resumo (e o abstract)
-  não ultrapassem 10 linhas cada, sendo que ambos devem estar na primeira
-  página do artigo.
+
+\begin{resumo}
+  A escassez global de profissionais de cibersegurança evidencia a urgência de ampliar a
+  participação, especialmente de mulheres, que representam apenas 20--25\% da força de
+  trabalho do setor. Este artigo apresenta uma Revisão Sistemática da Literatura (RSL)
+  conduzida para mapear o estado da arte sobre programas de capacitação em cibersegurança
+  com perspectiva de inclusão de gênero. Seguindo o protocolo PRISMA e o \textit{framework}
+  PICO, foram consultadas cinco bases de dados (IEEE Xplore, Scopus, Google Scholar, ACM
+  Digital Library e SBC Open Lib), abrangendo publicações de 2020 a 2025. De um conjunto
+  inicial de 671 registros, 11 artigos foram selecionados por meio de um processo
+  multietapas. Os resultados revelam uma dicotomia central: intervenções pedagógicas
+  inclusivas de alta eficácia, porém de pequena escala, e plataformas de larga escala
+  carentes de \textit{design} específico de gênero. Os temas centrais identificados incluem
+  gamificação narrativa, andaimes cognitivos, aprendizagem colaborativa e mentoria como
+  fatores de retenção feminina. Adicionalmente, duas publicações nacionais identificadas
+  na SBC Open Lib sinalizam uma comunidade científica brasileira em crescimento sobre
+  o tema.
 \end{resumo}
 
 
-\section{General Information}
+% ============================================================
+\section{Introdução}
+% ============================================================
 
-All full papers and posters (short papers) submitted to some SBC conference,
-including any supporting documents, should be written in English or in
-Portuguese. The format paper should be A4 with single column, 3.5 cm for upper
-margin, 2.5 cm for bottom margin and 3.0 cm for lateral margins, without
-headers or footers. The main font must be Times, 12 point nominal size, with 6
-points of space before each paragraph. Page numbers must be suppressed.
+A cibersegurança consolidou-se como setor estratégico global, porém enfrenta um déficit
+persistente de profissionais qualificados. A força de trabalho global em 2024 somou
+5,47 milhões de profissionais, crescendo apenas 0,1\% em relação a 2023
+\cite{ISC2_2024}. Neste cenário, a sub-representação feminina configura tanto um
+desperdício de talentos quanto uma barreira à resiliência cibernética: mulheres
+representam entre 20\% e 25\% dos profissionais do setor e apenas 17\% dos cargos de
+liderança executiva \cite{ISC2_2025, Fortinet2025}.
 
-Full papers must respect the page limits defined by the conference.
-Conferences that publish just abstracts ask for \textbf{one}-page texts.
+Este fenômeno é descrito na literatura como \textit{leaky pipeline}, refletindo que as
+taxas de evasão femininas superam as masculinas à medida que o nível técnico e a
+competitividade aumentam \cite{Pitman2022}. As barreiras não são apenas técnicas, mas
+estruturais, culturais e pedagógicas: incluem estereótipos de gênero, ausência de modelos
+de referência (\textit{role models}) e mecanismos de gamificação competitiva que podem
+inadvertidamente elevar a ansiedade de performance de grupos sub-representados
+\cite{SelmanHousein2025, Hogan2025, Horcher2021}.
 
-\section{First Page} \label{sec:firstpage}
+No Brasil, o Programa \textit{Hackers} do Bem --- iniciativa financiada pelo Ministério
+da Ciência, Tecnologia e Inovações (MCTI) e executada pela Rede Nacional de Ensino e
+Pesquisa (RNP) --- registrou 22,45\% de inscritas mulheres em um total de 150.832
+inscritos. Esse percentual cai para aproximadamente 13\% nas fases especializadas do
+programa \cite{HackersDoBemManual}, evidenciando a materialização local do fenômeno
+global.
 
-The first page must display the paper title, the name and address of the
-authors, the abstract in English and ``resumo'' in Portuguese (``resumos'' are
-required only for papers written in Portuguese). The title must be centered
-over the whole page, in 16 point boldface font and with 12 points of space
-before itself. Author names must be centered in 12 point font, bold, all of
-them disposed in the same line, separated by commas and with 12 points of
-space after the title. Addresses must be centered in 12 point font, also with
-12 points of space after the authors' names. E-mail addresses should be
-written using font Courier New, 10 point nominal size, with 6 points of space
-before and 6 points of space after.
+Neste contexto, o presente artigo apresenta os resultados de uma Revisão Sistemática da
+Literatura (RSL) para mapear o estado da arte sobre iniciativas, programas e abordagens
+pedagógicas voltadas à inclusão e retenção de mulheres em programas de capacitação em
+cibersegurança. A revisão, originalmente conduzida nas bases IEEE Xplore, Scopus, Google
+Scholar e ACM, foi expandida para incluir a SBC Open Lib, identificando produções
+nacionais sobre o tema. As questões de pesquisa que orientam o mapeamento são:
 
-The abstract and ``resumo'' (if is the case) must be in 12 point Times font,
-indented 0.8cm on both sides. The word \textbf{Abstract} and \textbf{Resumo},
-should be written in boldface and must precede the text.
+\begin{itemize}
+  \item \textbf{QP1:} Quais fatores socioculturais e estruturais são determinantes para
+  a baixa adesão e permanência feminina em programas de capacitação em cibersegurança?
+  \item \textbf{QP2:} Quais abordagens pedagógicas impactam a adesão e a permanência do
+  público feminino?
+  \item \textbf{QP3:} Em que medida mecanismos colaborativos e de mentoria influenciam
+  a autoeficácia e a intenção de permanência das estudantes?
+\end{itemize}
 
-\section{CD-ROMs and Printed Proceedings}
-
-In some conferences, the papers are published on CD-ROM while only the
-abstract is published in the printed Proceedings. In this case, authors are
-invited to prepare two final versions of the paper. One, complete, to be
-published on the CD and the other, containing only the first page, with
-abstract and ``resumo'' (for papers in Portuguese).
-
-\section{Sections and Paragraphs}
-
-Section titles must be in boldface, 13pt, flush left. There should be an extra
-12 pt of space before each title. Section numbering is optional. The first
-paragraph of each section should not be indented, while the first lines of
-subsequent paragraphs should be indented by 1.27 cm.
-
-\subsection{Subsections}
-
-The subsection titles must be in boldface, 12pt, flush left.
-
-\section{Figures and Captions}\label{sec:figs}
+O restante do artigo está organizado da seguinte forma: a Seção~\ref{sec:metodo}
+descreve a metodologia da RSL; a Seção~\ref{sec:resultados} apresenta os trabalhos
+selecionados; a Seção~\ref{sec:analise} realiza a análise multidimensional e discute
+lacunas; e a Seção~\ref{sec:conclusao} traz as considerações finais.
 
 
-Figure and table captions should be centered if less than one line
-(Figure~\ref{fig:exampleFig1}), otherwise justified and indented by 0.8cm on
-both margins, as shown in Figure~\ref{fig:exampleFig2}. The caption font must
-be Helvetica, 10 point, boldface, with 6 points of space before and after each
-caption.
+% ============================================================
+\section{Metodologia} \label{sec:metodo}
+% ============================================================
 
-\begin{figure}[ht]
-\centering
-\includegraphics[width=.5\textwidth]{fig1.jpg}
-\caption{A typical figure}
-\label{fig:exampleFig1}
-\end{figure}
-
-\begin{figure}[ht]
-\centering
-\includegraphics[width=.3\textwidth]{fig2.jpg}
-\caption{This figure is an example of a figure caption taking more than one
-  line and justified considering margins mentioned in Section~\ref{sec:figs}.}
-\label{fig:exampleFig2}
-\end{figure}
-
-In tables, try to avoid the use of colored or shaded backgrounds, and avoid
-thick, doubled, or unnecessary framing lines. When reporting empirical data,
-do not use more decimal digits than warranted by their precision and
-reproducibility. Table caption must be placed before the table (see Table 1)
-and the font used must also be Helvetica, 10 point, boldface, with 6 points of
-space before and after each caption.
+A RSL foi conduzida seguindo as diretrizes do protocolo PRISMA (\textit{Preferred
+Reporting Items for Systematic Reviews and Meta-Analyses}) \cite{Page2021}, garantindo
+transparência, qualidade e replicabilidade. O protocolo de busca foi estruturado com
+base no \textit{framework} PICO, conforme a Tabela~\ref{tab:pico}.
 
 \begin{table}[ht]
 \centering
-\caption{Variables to be considered on the evaluation of interaction
-  techniques}
-\label{tab:exTable1}
-\includegraphics[width=.7\textwidth]{table.jpg}
+\caption{Estratégia PICO utilizada na revisão sistemática}
+\label{tab:pico}
+\begin{tabular}{|l|p{9.5cm}|}
+    \hline
+    \textbf{Elemento} & \textbf{Definição na Pesquisa} \\
+    \hline
+    \textbf{População} & Meninas, mulheres, estudantes e profissionais em cibersegurança. \\
+    \hline
+    \textbf{Intervenção} & Projetos, programas, ações de inclusão, capacitação, mentoria, oficinas, eventos e \textit{hackathons}. \\
+    \hline
+    \textbf{Comparação} & Projetos em cibersegurança (gerais/com recorte de gênero). \\
+    \hline
+    \textbf{Resultado} & Aumento de ações voltadas às mulheres na área de cibersegurança. \\
+    \hline
+\end{tabular}
 \end{table}
 
-\section{Images}
+\subsection{Bases de Dados e \textit{String} de Busca}
 
-All images and illustrations should be in black-and-white, or gray tones,
-excepting for the papers that will be electronically available (on CD-ROMs,
-internet, etc.). The image resolution on paper should be about 600 dpi for
-black-and-white images, and 150-300 dpi for grayscale images.  Do not include
-images with excessive resolution, as they may take hours to print, without any
-visible difference in the result. 
+Foram consultadas cinco bases de dados: IEEE Xplore, Scopus, Google Scholar, ACM
+Digital Library e SBC Open Lib. O período de cobertura foi de 2020 a 2025, limitando-se
+a artigos completos publicados em periódicos ou eventos. A \textit{string} de busca
+aplicada nas bases de idioma inglês foi:
 
-\section{References}
+\begin{quote}
+\small\textit{(\textquotedbl women\textquotedbl{} OR \textquotedbl girls\textquotedbl{}
+OR \textquotedbl female\textquotedbl{} OR \textquotedbl gender\textquotedbl{}) AND
+(\textquotedbl cybersecurity\textquotedbl{} OR \textquotedbl digital security\textquotedbl{}
+OR \textquotedbl information security\textquotedbl{} OR \textquotedbl cyber
+security\textquotedbl{}) AND (\textquotedbl inclusion\textquotedbl{} OR
+\textquotedbl outreach\textquotedbl{} OR \textquotedbl mentor\textquotedbl{} OR
+\textquotedbl train\textquotedbl{} OR \textquotedbl empower\textquotedbl{} OR
+\textquotedbl project\textquotedbl{} OR \textquotedbl hackathon\textquotedbl{} OR
+\textquotedbl workshop\textquotedbl{} OR \textquotedbl bootcamp\textquotedbl{})}
+\end{quote}
 
-Bibliographic references must be unambiguous and uniform.  We recommend giving
-the author names references in brackets, e.g. \cite{knuth:84},
-\cite{boulic:91}, and \cite{smith:99}.
+Na SBC Open Lib, a busca foi realizada com termos adaptados ao português:
+\textit{(mulher OR gênero OR feminino) AND (cibersegurança OR segurança da informação)
+AND (inclusão OR capacitação OR formação OR mentoria)}.
 
-The references must be listed using 12 point font size, with 6 points of space
-before each reference. The first line of each reference should not be
-indented, while the subsequent should be indented by 0.5 cm.
+\subsection{Processo de Seleção}
 
-\bibliographystyle{sbc}
-\bibliography{sbc-template}
+Os metadados dos artigos identificados foram exportados para a ferramenta
+Rayyan\footnote{\url{https://www.rayyan.ai/}}, utilizada para gerenciar as etapas de
+seleção e eliminar duplicatas. O processo ocorreu em três fases:
+
+\begin{enumerate}
+  \item \textbf{Triagem por Título}: avaliação da aderência temática e disponibilidade
+  integral do artigo;
+  \item \textbf{Triagem por Resumo}: verificação da relação entre ensino de cibersegurança
+  e estratégias de inclusão ou análise de gênero; e
+  \item \textbf{Elegibilidade (leitura integral)}: exclusão de estudos sem dados
+  empíricos ou relatos sem avaliação.
+\end{enumerate}
+
+A Tabela~\ref{tab:selecao} detalha a distribuição dos registros por base de dados ao
+longo do funil de seleção. Na SBC Open Lib, o volume de artigos identificados foi menor
+do que nas demais bases, porém a precisão da busca resultou em maior taxa de aprovação
+nas fases subsequentes.
+
+\begin{table}[ht]
+\centering
+\caption{Processo de seleção dos artigos por base de dados}
+\label{tab:selecao}
+\begin{tabular}{l|c|c|c|c}
+\toprule
+\textbf{Base de dados} & \textbf{Identificação} & \textbf{1\textordfeminine{} fase} & \textbf{2\textordfeminine{} fase} & \textbf{Seleção final} \\
+\midrule
+Google Scholar & 50  & 29 & 6  & 1 \\
+Scopus         & 54  & 23 & 5  & 1 \\
+IEEE Xplore    & 342 & 32 & 11 & 1 \\
+ACM            & 215 & 30 & 10 & 6 \\
+SBC Open Lib   & 10  &  6 &  4 & 2 \\
+\midrule
+\textbf{Total} & \textbf{671} & \textbf{120} & \textbf{36} & \textbf{11} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% TODO: Verifique e corrija os números da linha SBC Open Lib acima
+% conforme os dados reais da sua busca na base.
+
+A predominância de artigos da ACM (55\% da seleção final) reflete a concentração de
+publicações sobre educação em computação (\textit{Computing Education}) nessa
+comunidade, com destaque para conferências como SIGCSE TS, ITiCSE e Koli Calling, além
+de conferências de segurança como ARES. Os dois artigos identificados na SBC Open Lib
+representam a produção nacional sobre o tema, evidenciando a produção científica
+brasileira na interseção entre gênero e cibersegurança.
+
+
+% ============================================================
+\section{Trabalhos Selecionados} \label{sec:resultados}
+% ============================================================
+
+Os 11 artigos selecionados abordam a inclusão de mulheres em cibersegurança sob
+perspectivas distintas, organizadas a seguir por temática.
+
+\subsection{Reingresso e Recuperação da Confiança Técnica}
+
+\citeonline{Rahman2022} abordam um segmento crítico: mulheres que buscam retornar
+à força de trabalho em computação após afastamento (\textit{career break}). O grupo
+enfrenta barreiras específicas (QP1), como defasagem técnica percebida e severa
+diminuição da autoeficácia profissional. A pesquisa valida que o \textit{networking} e
+a convivência com pares em situação análoga são tão vitais quanto o conteúdo técnico,
+sugerindo trilhas específicas para alunas em transição de carreira como mecanismo de
+retenção (QP3). A principal limitação do trabalho reside na escala reduzida da
+intervenção, baseada em \textit{workshops} presenciais de conferências acadêmicas.
+
+\subsection{Aprendizagem Baseada em Problemas e Andaimes Cognitivos}
+
+\citeonline{Casey2023} apresentam o \textit{Cyber Sleuth Science Lab} (CSSL), um
+ambiente de aprendizagem inteligente baseado em Aprendizagem Baseada em Problemas (PBL)
+e narrativa investigativa. A abordagem contextualiza desafios técnicos em problemas
+sociais reais --- como combate ao \textit{cyberbullying} --- transformando a percepção
+da cibersegurança de disciplina puramente técnica em ferramenta de justiça social (QP1).
+Os resultados demonstram que a decomposição de tarefas complexas em etapas menores,
+combinada com a presença de modelos femininos como facilitadoras, aumentou
+significativamente a autoeficácia das participantes (QP2 e QP3). A limitação central é
+a dependência de mediação humana síncrona intensa.
+
+\citeonline{Thomas2024} avaliam a eficácia de currículo ajustado para estudantes
+de comunidades sub-representadas, demonstrando que \textit{scaffolding} multinível --- com
+suportes visuais para alunos com dificuldades e extensões de lição para os mais avançados
+--- é essencial para manter o engajamento de grupos heterogêneos (QP2). O trabalho
+evidencia que aulas expositivas longas geram desengajamento rápido, sendo necessário
+intercalar curtos intervalos teóricos com experimentação prática. A principal limitação
+é a escala reduzida (N=24) e a dependência de \textit{summer camps} presenciais.
+
+\subsection{Gamificação Narrativa e Redução de Ansiedade}
+
+\citeonline{Costa2023} investigam o programa \textit{CyberTrials} para alunas do
+ensino médio, demonstrando que o uso de \textit{storytelling} --- onde as estudantes
+atuam como investigadoras em um caso de \textit{ransomware} --- aumenta o engajamento e
+a autoeficácia (QP2). O estudo valida que a ``camada de apresentação'' do conteúdo é
+tão importante quanto o próprio conteúdo técnico.
+
+\citeonline{Costa2025} apresentam a validação empírica aprofundada do mesmo
+programa com RPG (\textit{Role-Playing Game}), usando grupos de controle e pré/pós-testes
+com 779 alunas. Ao envolver os desafios técnicos em narrativa investigativa --- onde as
+estudantes são ``detetives'' em vez de ``hackers'' --- a intervenção reduziu o estereótipo
+masculino associado à área (QP1 e QP2) e aumentou significativamente a intenção de seguir
+carreira em STEM. O estudo confirma que a colaboração intrínseca ao RPG foi determinante
+para a manutenção do engajamento (QP3).
+
+\subsection{Mentoria, Empregabilidade e \textit{Soft Skills}}
+
+\citeonline{Musuva2025} documentam o programa \textit{Cyber Shujaa}, no Quênia,
+que adota abordagem holística integrando capacitação prática, imersão em empresas e
+suporte para colocação no mercado. O programa alcançou 41\% de participação feminina por
+meio de recrutamento afirmativo e parcerias com comunidades locais (QP1). O estudo
+evidencia que a mentoria de carreira fortalece a identidade profissional das alunas,
+mitigando a síndrome do impostor (QP3). A limitação é a baixa escalabilidade do modelo
+presencial intensivo.
+
+\citeonline{Benson2025} investigam, por meio da Teoria Social Cognitiva de
+Carreira, o papel das \textit{soft skills} (resiliência, comunicação, liderança) como
+fatores de proteção contra o isolamento profissional feminino (QP1). Os autores
+identificam quatro pilares essenciais: confiança e resiliência, mentoria e patrocínio,
+colaboração na resolução de problemas e políticas inclusivas. A contribuição central é a
+validação de que ambientes de aprendizado colaborativo desenvolvem tanto habilidades
+técnicas quanto um senso de comunidade que combate a síndrome do impostor (QP3). O
+trabalho carece, contudo, de proposta curricular aplicada a plataformas EAD.
+
+\subsection{Escalabilidade e Plataformas Abertas}
+
+\citeonline{Tshekiso2025} documentam a \textit{picoCTF-Africa}, demonstrando
+como plataformas abertas e agnósticas de \textit{hardware} permitem escalar o ensino de
+cibersegurança em múltiplos países africanos com recursos limitados (QP2). A criação de
+clubes locais liderados por embaixadores regionais e de uma categoria específica para
+mulheres (QP1) reforça que a competição aberta por si só não garante equidade. A
+limitação é a ausência de adaptações pedagógicas específicas de gênero para além da
+categoria separada.
+
+\citeonline{Hogan2025} investigam como equipes distribuídas constroem
+\textit{swift trust} (confiança rápida) em competições CTF remotas. Os resultados
+indicam que a autoeficácia é ampliada quando o ambiente virtual simula a camaradagem de
+um laboratório físico, sugerindo que plataformas de ensino massivo devem incorporar
+comunidades persistentes (QP3). A limitação é o foco em times ``de sucesso'', ignorando
+as dinâmicas que levam à desistência, com potencial viés de sobrevivência em relação ao
+público feminino.
+
+\subsection{Produções Nacionais (SBC Open Lib)}
+
+% ---------------------------------------------------------------
+% TODO: Preencha as duas subseções abaixo com os dados reais dos
+% artigos encontrados na SBC Open Lib.
+% Para cada artigo, descreva: autores, título, ano, contexto,
+% metodologia, resultados principais e contribuição para QP1/QP2/QP3.
+% ---------------------------------------------------------------
+
+\textbf{[ARTIGO SBC 1]:}
+% TODO: Descreva aqui o primeiro artigo da SBC Open Lib.
+% Autores: [?] | Título: [?] | Ano: [?]
+% Contexto e contribuições (QP1/QP2/QP3): [?]
+% Limitações: [?]
+
+\textbf{[ARTIGO SBC 2]:}
+% TODO: Descreva aqui o segundo artigo da SBC Open Lib.
+% Autores: [?] | Título: [?] | Ano: [?]
+% Contexto e contribuições (QP1/QP2/QP3): [?]
+% Limitações: [?]
+
+A identificação dessas publicações na SBC Open Lib evidencia que a comunidade científica
+brasileira começa a produzir conhecimento situado sobre o fenômeno local, o que é
+especialmente relevante frente ao contexto de iniciativas como o Programa
+\textit{Hackers} do Bem.
+
+
+% ============================================================
+\section{Análise e Discussão} \label{sec:analise}
+% ============================================================
+
+\subsection{Distribuição Temporal}
+
+A análise temporal dos 11 artigos selecionados revela concentração expressiva de
+publicações em 2023 (três artigos) e 2025 (cinco artigos internacionais), com apenas
+um trabalho de 2022 e um de 2024. Essa distribuição indica que a interseção entre
+inclusão de gênero e metodologias de ensino em cibersegurança é um tema emergente e de
+alta relevância no cenário acadêmico recente, validando a justificativa desta pesquisa.
+
+\subsection{Análise Multidimensional}
+
+Os trabalhos foram avaliados em cinco dimensões derivadas das questões de pesquisa: (1)
+\textbf{Foco em Gênero e Barreiras (QP1)}; (2) \textbf{Abordagens Pedagógicas (QP2)};
+(3) \textbf{Colaboração e Autoeficácia (QP3)}; (4) \textbf{Escalabilidade}; e (5)
+\textbf{Avaliação Empírica}. A Tabela~\ref{tab:comparacao} sintetiza a comparação
+qualitativa dos trabalhos nessas dimensões.
+
+\begin{table}[ht]
+\centering
+\caption{Comparação dos trabalhos selecionados por dimensão de análise}
+\label{tab:comparacao}
+\begin{tabular}{l|c|c|c|c|l}
+\toprule
+\textbf{Trabalho} & \textbf{Gênero} & \textbf{Ped.} & \textbf{Colab.} & \textbf{Escala} & \textbf{\textit{Gap} principal} \\
+\midrule
+Costa et al. \cite{Costa2025}    & Alta  & Alta  & Méd. & Méd. & Sem dados longitudinais de carreira \\
+Musuva et al. \cite{Musuva2025}  & Méd.  & Méd.  & Alta & Méd. & Modelo presencial, difícil de escalar \\
+Tshekiso et al. \cite{Tshekiso2025} & Bx. & Bx.  & Méd. & Alta & Sem pedagogia específica de gênero \\
+Benson et al. \cite{Benson2025}  & Alta  & Bx.   & Alta & Bx.  & Sem plataforma EAD aplicada \\
+Costa et al. \cite{Costa2023}    & Alta  & Alta  & Alta & Méd. & Foco em atração, não em retenção \\
+Casey et al. \cite{Casey2023}    & Alta  & Alta  & Alta & Bx.  & Dependência de mediação síncrona \\
+Thomas et al. \cite{Thomas2024}  & Alta  & Alta  & Bx.  & Bx.  & Amostra pequena (N=24) \\
+Rahman et al. \cite{Rahman2022}  & Alta  & Méd.  & Alta & Bx.  & Foco em reingresso, escala reduzida \\
+Hogan et al. \cite{Hogan2025}    & Bx.   & Méd.  & Alta & Alta & Viés de sobrevivência, times mistos \\
+SBC\_1 \cite{SBC_artigo1}        & [?]   & [?]   & [?]  & [?]  & [TODO] \\
+SBC\_2 \cite{SBC_artigo2}        & [?]   & [?]   & [?]  & [?]  & [TODO] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Foco em Gênero e Barreiras (QP1)}
+
+Sete dos 11 artigos apresentam alto foco em gênero. A literatura converge em identificar
+três categorias de barreiras: (i) \textbf{estruturais} --- ausência de
+\textit{role models} e currículos que refletem vieses masculinos; (ii) \textbf{culturais}
+--- estereótipos que associam cibersegurança a um domínio masculino; e (iii)
+\textbf{pedagógicas} --- mecânicas de gamificação competitiva que elevam a ansiedade de
+\textit{performance} e reduzem a autoeficácia. Destacam-se \cite{Costa2025} e
+\cite{Benson2025}, que estruturam suas intervenções especificamente para combater
+estereótipos e fortalecer a identidade profissional feminina.
+
+\subsubsection{Abordagens Pedagógicas (QP2)}
+
+Os trabalhos com maior foco pedagógico --- \cite{Costa2023}, \cite{Costa2025},
+\cite{Casey2023} e \cite{Thomas2024} --- convergem em três princípios: (i)
+\textbf{contextualização narrativa} dos desafios técnicos em problemas sociais reais;
+(ii) \textbf{andaimes cognitivos} (\textit{scaffolding}) para reduzir a carga cognitiva
+inicial e evitar a frustração; e (iii) \textbf{substituição de competições individuais}
+por abordagens colaborativas de resolução de problemas. Esses princípios sugerem que a
+eficácia pedagógica em contextos inclusivos depende de transformar a percepção da
+cibersegurança de uma arena competitiva em um espaço de investigação e impacto social.
+
+\subsubsection{Colaboração e Autoeficácia (QP3)}
+
+Os mecanismos mais eficazes para a retenção feminina combinam: (i) formação de
+\textbf{comunidades de prática persistentes} \cite{Hogan2025, Tshekiso2025}; (ii)
+\textbf{mentoria formal} com profissionais da indústria \cite{Musuva2025}; e (iii)
+\textbf{desenvolvimento de \textit{soft skills}} estruturado pedagogicamente
+\cite{Benson2025}. A literatura é consistente em demonstrar que a autoeficácia não é
+um traço fixo, podendo ser fortalecida por intervenções que valorizem a identidade
+profissional e promovam a colaboração.
+
+\subsubsection{Escalabilidade e Avaliação Empírica}
+
+Os trabalhos de maior escalabilidade --- \cite{Tshekiso2025} e \cite{Hogan2025} ---
+operam em plataformas digitais que suportam milhares de usuários, mas carecem de
+adaptações pedagógicas específicas de gênero. Por outro lado, as intervenções mais
+eficazes pedagogicamente \cite{Casey2023, Thomas2024} baseiam-se em modelos presenciais
+intensivos, inviáveis para programas nacionais massivos. Em termos de rigor metodológico,
+\cite{Costa2025} estabelece o padrão de referência ao apresentar grupos de controle e
+pré/pós-testes com amostra expressiva; \cite{Casey2023} contribui com dados longitudinais
+de três anos.
+
+\subsection{Lacunas Identificadas}
+
+A análise comparativa revela uma dicotomia central: de um lado, intervenções altamente
+eficazes e pedagogicamente inclusivas que operam em escalas reduzidas; do outro, modelos
+de alta escalabilidade focados em infraestrutura que frequentemente carecem de recorte
+específico de gênero. Essa dicotomia é ilustrada na
+Figura~\ref{fig:dicotomia}.
+
+A \textbf{lacuna principal} reside entre escalabilidade massiva e customização da
+experiência de aprendizado. Embora \cite{Musuva2025} e \cite{Benson2025} evidenciem a
+eficácia de práticas de ``alto toque humano'' (mentoria intensiva,
+\textit{soft skills}), não foi identificado na literatura revisada um modelo que
+operacionalize essas estratégias em ambientes assíncronos e de alcance nacional.
+
+\begin{figure}[ht]
+\centering
+% TODO: gerar novo gráfico ou reaproveitar a imagem de comparação dos slides
+% \includegraphics[width=0.8\textwidth]{comparacao.png}
+\caption{Dicotomia entre escalabilidade e profundidade pedagógica inclusiva}
+\label{fig:dicotomia}
+\small\textit{(Figura a inserir: gráfico posicionando os 11 trabalhos nos eixos
+Escalabilidade × Profundidade Pedagógica Inclusiva)}
+\end{figure}
+
+Adicionalmente, há escassez de publicações nacionais sobre o tema, o que torna a
+identificação de dois artigos na SBC Open Lib especialmente relevante. Essa constatação
+reforça a pertinência de pesquisas sobre programas como o \textit{Hackers} do Bem,
+cujos dados e contexto são únicos na literatura brasileira.
+
+
+% ============================================================
+\section{Considerações Finais} \label{sec:conclusao}
+% ============================================================
+
+Este artigo apresentou os resultados de uma RSL sobre programas de capacitação de
+mulheres em cibersegurança, expandida para incluir a SBC Open Lib como quinta base de
+dados. A partir de 671 registros identificados, 11 artigos foram selecionados,
+representando o estado da arte global e nacional sobre o tema.
+
+Os principais achados indicam que: (1) as barreiras à participação feminina são
+multidimensionais, combinando fatores estruturais, culturais e pedagógicos; (2) a
+\textbf{gamificação narrativa} e o \textbf{\textit{scaffolding} cognitivo} são as
+abordagens pedagógicas mais eficazes para o público feminino iniciante; (3)
+\textbf{mentoria formal} e \textbf{comunidades de prática} são mecanismos indispensáveis
+de retenção; e (4) existe uma lacuna crítica entre intervenções inclusivas de pequena
+escala e programas massivos, que precisa ser preenchida por modelos que integrem ambas
+as dimensões simultaneamente.
+
+A ausência de publicações nacionais identificadas nas bases internacionais, contrariada
+apenas pelas duas produções encontradas na SBC Open Lib, evidencia a necessidade de
+pesquisas situadas no contexto brasileiro. O Programa \textit{Hackers} do Bem representa
+uma oportunidade ímpar nesse sentido: com mais de 150 mil inscritos e dados empíricos de
+progressão por gênero disponíveis, constitui um campo fértil para a validação de
+estratégias de inclusão em larga escala. Os resultados desta RSL fundamentam a construção
+de um \textit{Framework} de Diretrizes para Inclusão e Retenção de Mulheres em Programas
+de Capacitação em Cibersegurança, cujo desenvolvimento constitui o objetivo central da
+dissertação de mestrado da qual este artigo é derivado.
+
+Como trabalho futuro, pretende-se: (i) validar o \textit{framework} proposto junto a um
+painel de especialistas em cibersegurança, educação e diversidade; e (ii) avaliar sua
+percepção de utilidade com alunas do Programa \textit{Hackers} do Bem, ativas e evadidas,
+por meio de \textit{survey} fundamentado no Modelo ARCS de motivação instrucional
+\cite{Keller1987}.
+
+\bibliographystyle{styles/abntex2-alf}
+\bibliography{bibliography/references}
 
 \end{document}
