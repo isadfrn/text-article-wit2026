@@ -5,6 +5,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[brazil]{babel}
 \usepackage{booktabs}
+\usepackage{multirow}
 \usepackage[alf,abnt-etal-list=0,abnt-etal-cite=3,abnt-repeated-author-omit=yes,abnt-doi=expand,abnt-emphasize=bf]{styles/abntex2cite}
 
 \sloppy
@@ -136,7 +137,7 @@ base no \textit{framework} PICO, conforme a Tabela~\ref{tab:pico}.
 \end{tabular}
 \end{table}
 
-\subsection{Bases de Dados e \textit{String} de Busca}
+\subsection{Bases de Dados e \textit{String} de Busca}\label{subsec:bases}
 
 Foram consultadas cinco bases de dados: IEEE Xplore, Scopus, Google Scholar, ACM
 Digital Library e SBC Open Lib. O período de cobertura foi de 2020 a 2025, limitando-se
@@ -159,25 +160,112 @@ Na SBC Open Lib, a busca foi realizada com termos adaptados ao português:
 \textit{(mulher OR gênero OR feminino) AND (cibersegurança OR segurança da informação)
 AND (inclusão OR capacitação OR formação OR mentoria)}.
 
+Cabe destacar que a busca no Google Scholar foi limitada a 50 resultados, em razão de
+restrições técnicas da plataforma: ao contrário das demais bases consultadas, o Google
+Scholar não oferece suporte nativo a operadores booleanos estruturados (OR, AND) de forma
+equivalente às interfaces avançadas de busca, nem mecanismo de exportação em massa dos
+registros identificados. Essa limitação impede a recuperação sistemática de grandes
+volumes de resultados e compromete a rastreabilidade exigida pelo protocolo PRISMA.
+Optou-se, portanto, por restringir a coleta aos 50 primeiros resultados, priorizando a
+replicabilidade e a coerência metodológica. A inclusão do Google Scholar mesmo com esta
+restrição foi mantida para ampliar a cobertura de literatura cinzenta e trabalhos não
+indexados nas demais bases.
+
+\subsection{Critérios de Inclusão e Exclusão}\label{subsec:criterios}
+
+Para garantir a replicabilidade do processo de seleção, os critérios de inclusão (CI) e
+exclusão (CE) foram definidos \textit{a priori}, antes da execução das buscas, em
+conformidade com as diretrizes PRISMA \cite{Page2021}. Os critérios foram aplicados
+sequencialmente por fase: na Fase~1, com base no título; na Fase~2, com base no resumo;
+e na Fase~3, com base na leitura integral do artigo. A identificação de qualquer critério
+de exclusão dispensava a análise dos critérios subsequentes para o mesmo registro. A
+Tabela~\ref{tab:criterios} apresenta os critérios organizados por fase.
+
+\begin{table}[ht]
+\centering
+\caption{Critérios de inclusão (CI) e exclusão (CE) por fase de triagem}
+\label{tab:criterios}
+\small
+\begin{tabular}{c|l|p{5.8cm}}
+\toprule
+\textbf{ID} & \textbf{Tipo} & \textbf{Critério} \\
+\midrule
+\multicolumn{3}{l}{\textit{Fase~1 — Triagem por título}} \\
+\midrule
+CI-1 & Inclusão & Texto completo do artigo disponível para acesso. \\
+CI-2 & Inclusão & Título com aderência temática: treinamento/capa\-citação em cibersegurança \textbf{e/ou} inclusão/participação de mulheres. \\
+CE-1 & Exclusão & Trata de segurança física de mulheres (IoT, GPS, aplicativos de proteção pessoal). \\
+CE-2 & Exclusão & Pesquisa técnica pura (malware, criptografia, detecção de intrusão) sem componente educacional ou de gênero. \\
+CE-3 & Exclusão & Classificação ou reconhecimento biométrico de gênero/idade por aprendizado de máquina. \\
+CE-4 & Exclusão & Aborda STEM genérico sem foco específico em cibersegurança. \\
+CE-5 & Exclusão & Conscientização de usuário final (\textit{cyber awareness}) sem foco em formação profissional ou acadêmica. \\
+\midrule
+\multicolumn{3}{l}{\textit{Fase~2 — Triagem por resumo}} \\
+\midrule
+CI-3 & Inclusão & Resumo relata estratégia, programa ou intervenção concreta para ampliar ingresso e/ou permanência de mulheres em capacitação em cibersegurança. \\
+CE-6 & Exclusão & Analisa lacuna ou barreiras de gênero sem descrever intervenção ou programa. \\
+CE-7 & Exclusão & Descreve capacitação em cibersegurança sem qualquer recorte de gênero. \\
+CE-8 & Exclusão & Foco em educação ou inclusão em outro campo que não cibersegurança. \\
+CE-9 & Exclusão & Contribuição editorial, introdutória ou \textit{framework} conceitual sem dados de pesquisa. \\
+\midrule
+\multicolumn{3}{l}{\textit{Fase~3 — Elegibilidade (leitura integral)}} \\
+\midrule
+CI-4 & Inclusão & Apresenta dados empíricos originais (quantitativos ou qualitativos) com avaliação de impacto sobre programa de capacitação com recorte de gênero. \\
+CE-10 & Exclusão & Estudo secundário (RSL, \textit{scoping review}, revisão narrativa). \\
+CE-11 & Exclusão & Proposta teórica, \textit{framework} ou recomendações sem validação empírica. \\
+CE-12 & Exclusão & Descreve ação ou adaptação, mas não avalia impacto com dados. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 \subsection{Processo de Seleção}
 
 Os metadados dos artigos identificados foram exportados para a ferramenta
 Rayyan\footnote{\url{https://www.rayyan.ai/}}, utilizada para gerenciar as etapas de
-seleção e eliminar duplicatas. O processo ocorreu em três fases:
+triagem, registrar as decisões de inclusão e exclusão por revisor e eliminar duplicatas.
+Das quatro bases internacionais, foram identificados 661 registros; após a remoção de 16
+duplicatas, 645 artigos foram submetidos à Fase~1. A SBC Open Lib foi consultada de forma
+complementar, com 10 registros adicionados diretamente à triagem por resumo, por ser uma
+base de menor volume e escopo nacional específico.
+
+O processo de seleção ocorreu em três fases, conforme os critérios formalizados na
+Tabela~\ref{tab:criterios}:
 
 \begin{enumerate}
-  \item \textbf{Triagem por Título}: avaliação da aderência temática e disponibilidade
-  integral do artigo;
-  \item \textbf{Triagem por Resumo}: verificação da relação entre ensino de cibersegurança
-  e estratégias de inclusão ou análise de gênero; e
-  \item \textbf{Elegibilidade (leitura integral)}: exclusão de estudos sem dados
-  empíricos ou relatos sem avaliação.
+  \item \textbf{Fase~1 — Triagem por título (CI-1, CI-2, CE-1 a CE-5)}: dos 645 registros
+  das quatro bases internacionais, 531 foram excluídos por não atenderem aos critérios de
+  inclusão temática ou por se enquadrarem em categorias de exclusão explícitas (p.~ex.,
+  segurança física de mulheres via IoT, pesquisa técnica pura em cibersegurança, ou STEM
+  genérico sem foco em cibersegurança), resultando em 114 artigos selecionados;
+
+  \item \textbf{Fase~2 — Triagem por resumo (CI-3, CE-6 a CE-9)}: aplicada aos 114
+  registros das bases internacionais mais os 10 da SBC Open Lib (total de 124), 88 foram
+  excluídos por não descreverem estratégia ou intervenção concreta de inclusão feminina em
+  capacitação (p.~ex., artigos que apenas analisam barreiras sem propor ação, ou relatos
+  de capacitação sem recorte de gênero), resultando em 36 artigos elegíveis; e
+
+  \item \textbf{Fase~3 — Elegibilidade por leitura integral (CI-4, CE-10 a CE-12)}: os
+  36 artigos foram lidos na íntegra; 25 foram excluídos por constituírem estudos
+  secundários, propostas teóricas sem validação empírica ou relatos de ação sem avaliação
+  de impacto, resultando em \textbf{11 artigos incluídos na seleção final}.
 \end{enumerate}
 
+O fluxo completo do processo de seleção, seguindo o modelo PRISMA 2020 \cite{Page2021},
+é ilustrado na Figura~\ref{fig:prisma}, que representa as quatro bases internacionais.
+Os registros da SBC Open Lib, por constituírem busca complementar, são contabilizados na
+Tabela~\ref{tab:selecao}.
+
+\begin{figure}[ht]
+\centering
+% Nota: converter o arquivo SVG para PDF antes de compilar com pdflatex:
+%   inkscape --export-pdf=figs/prisma_flowchart_rsl.pdf figs/prisma_flowchart_rsl.svg
+\includegraphics[width=0.92\textwidth]{figs/prisma_flowchart_rsl}
+\caption{Fluxograma PRISMA do processo de seleção — bases internacionais (661 registros iniciais)}
+\label{fig:prisma}
+\end{figure}
+
 A Tabela~\ref{tab:selecao} detalha a distribuição dos registros por base de dados ao
-longo do funil de seleção. Na SBC Open Lib, o volume de artigos identificados foi menor
-do que nas demais bases, porém a precisão da busca resultou em maior taxa de aprovação
-nas fases subsequentes.
+longo do funil de seleção, incluindo a busca complementar na SBC Open Lib.
 
 \begin{table}[ht]
 \centering
@@ -185,28 +273,28 @@ nas fases subsequentes.
 \label{tab:selecao}
 \begin{tabular}{l|c|c|c|c}
 \toprule
-\textbf{Base de dados} & \textbf{Identificação} & \textbf{1\textordfeminine{} fase} & \textbf{2\textordfeminine{} fase} & \textbf{Seleção final} \\
+\textbf{Base de dados} & \textbf{Identificação} & \textbf{Fase~1} & \textbf{Fase~2} & \textbf{Seleção final} \\
 \midrule
-Google Scholar & 50  & 29 & 6  & 1 \\
-Scopus         & 54  & 23 & 5  & 1 \\
-IEEE Xplore    & 342 & 32 & 11 & 1 \\
-ACM            & 215 & 30 & 10 & 6 \\
-SBC Open Lib   & 10  &  6 &  4 & 2 \\
+Google Scholar$^{*}$ & 50  & 29 & 6  & 1 \\
+Scopus               & 54  & 23 & 5  & 1 \\
+IEEE Xplore          & 342 & 32 & 11 & 1 \\
+ACM Digital Library  & 215 & 30 & 10 & 6 \\
+SBC Open Lib$^{**}$  & 10  &  6 &  4 & 2 \\
 \midrule
 \textbf{Total} & \textbf{671} & \textbf{120} & \textbf{36} & \textbf{11} \\
 \bottomrule
 \end{tabular}
+\vspace{2pt}
+{\footnotesize $^{*}$Limitado a 50 resultados por restrições técnicas da plataforma (ver Seção~\ref{subsec:bases}).}\\
+{\footnotesize $^{**}$Busca complementar; registros incorporados a partir da Fase~2.}
 \end{table}
 
-% TODO: Verifique e corrija os números da linha SBC Open Lib acima
-% conforme os dados reais da sua busca na base.
-
-A predominância de artigos da ACM (55\% da seleção final) reflete a concentração de
-publicações sobre educação em computação (\textit{Computing Education}) nessa
-comunidade, com destaque para conferências como SIGCSE TS, ITiCSE e Koli Calling, além
-de conferências de segurança como ARES. Os dois artigos identificados na SBC Open Lib
-representam a produção nacional sobre o tema, evidenciando a produção científica
-brasileira na interseção entre gênero e cibersegurança.
+A predominância de artigos da ACM Digital Library (55\% da seleção final) reflete a
+concentração de publicações sobre educação em computação (\textit{Computing Education})
+nessa comunidade científica, com destaque para conferências como SIGCSE TS, ITiCSE e Koli
+Calling, além de eventos de segurança como ARES. Os dois artigos identificados na
+SBC Open Lib representam contribuições nacionais sobre o tema, evidenciando uma comunidade
+científica brasileira em formação na interseção entre gênero e cibersegurança.
 
 
 % ============================================================
