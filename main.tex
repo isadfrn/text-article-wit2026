@@ -2,61 +2,46 @@
 
 \usepackage{styles/sbc-template}
 \usepackage{graphicx,url}
+\usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[brazil]{babel}
 \usepackage{booktabs}
 \usepackage{multirow}
+\usepackage{float}
+\usepackage{tabularx}
 \usepackage[alf,abnt-etal-list=0,abnt-etal-cite=3,abnt-repeated-author-omit=yes,abnt-doi=expand,abnt-emphasize=bf]{styles/abntex2cite}
 
 \sloppy
 
-\title{Mulheres em Cibersegurança: Uma Revisão Sistemática sobre\\
-  Programas de Capacitação e Estratégias de Inclusão}
+% ---------------------------------------------------------------
+% MODO ANÔNIMO: mude para \anonymousfalse para incluir autoria
+% ---------------------------------------------------------------
+\newif\ifanonymous
+\anonymoustrue   % <-- troque por \anonymousfalse ao submeter com autoria
 
-\author{Isabella de Freitas Nunes\inst{1}, Michelle Silva Wangham\inst{1}}
+\title{Mulheres em Cibersegurança: Uma Revisão Sistemática sobre Programas de Capacitação e Estratégias de Retenção}
 
-\address{Programa de Pós-Graduação em Computação Aplicada\\
-  Universidade do Vale do Itajaí (UNIVALI) -- Itajaí -- SC -- Brasil
-  \email{isabella.nunes@edu.univali.br, wangham@univali.br}
-}
+\ifanonymous
+  \renewcommand{\inst}[1]{}  % suprime o superscript de instituição (ex.: ¹)
+  \author{}
+  \address{}
+\else
+  \author{Isabella de Freitas Nunes\inst{1}, Michelle Silva Wangham\inst{1}}
+  \address{Programa de Pós-Graduação em Computação Aplicada\\
+    Universidade do Vale do Itajaí (UNIVALI) -- Itajaí -- SC -- Brasil
+    \email{isabella.nunes@edu.univali.br, wangham@univali.br}}
+\fi
 
 \begin{document}
 
 \maketitle
 
 \begin{abstract}
-  The global shortage of cybersecurity professionals highlights the urgency of broadening
-  workforce participation, particularly among women, who represent only 20--25\% of the
-  global cybersecurity workforce. This paper presents a Systematic Literature Review (SLR)
-  conducted to map the state of the art on cybersecurity training programs with a
-  gender-inclusive perspective. Following the PRISMA protocol and PICO framework, five
-  databases were consulted (IEEE Xplore, Scopus, Google Scholar, ACM Digital Library, and
-  SBC Open Lib), covering publications from 2020 to 2025. From an initial set of 671
-  records, 11 articles were selected through a multi-stage screening process. Results
-  reveal a central dichotomy: highly effective gender-inclusive pedagogical interventions
-  that operate at small scale, versus large-scale platforms that lack specific gender
-  design. Key themes include narrative gamification, cognitive scaffolding, collaborative
-  learning, and mentoring as drivers of female retention in cybersecurity programs.
-  Additionally, two national publications identified in the SBC Open Lib signal a growing
-  Brazilian scientific community engaged with this topic.
+  The global shortage of cybersecurity professionals highlights the urgency of broadening workforce participation, particularly among women, who represent only 20--25\% of the global cybersecurity workforce. This paper presents a Systematic Literature Review (SLR) conducted to map the state of the art on cybersecurity training programs with a gender-inclusive perspective. Following the PRISMA protocol and PICO framework, five databases were consulted (IEEE Xplore, Scopus, Google Scholar, ACM Digital Library, and SBC Open Lib), covering publications from 2020 to 2025. From an initial set of 671 records, 11 articles were selected through a multi-stage screening process. Results reveal a central dichotomy: highly effective gender-inclusive pedagogical interventions that operate at small scale, versus large-scale platforms that lack specific gender design. Key themes include narrative gamification, cognitive scaffolding, collaborative learning, and mentoring as drivers of female retention in cybersecurity programs. Additionally, two national publications identified in the SBC Open Lib signal a growing Brazilian scientific community engaged with this topic.
 \end{abstract}
 
 \begin{resumo}
-  A escassez global de profissionais de cibersegurança evidencia a urgência de ampliar a
-  participação, especialmente de mulheres, que representam apenas 20--25\% da força de
-  trabalho do setor. Este artigo apresenta uma Revisão Sistemática da Literatura (RSL)
-  conduzida para mapear o estado da arte sobre programas de capacitação em cibersegurança
-  com perspectiva de inclusão de gênero. Seguindo o protocolo PRISMA e o \textit{framework}
-  PICO, foram consultadas cinco bases de dados (IEEE Xplore, Scopus, Google Scholar, ACM
-  Digital Library e SBC Open Lib), abrangendo publicações de 2020 a 2025. De um conjunto
-  inicial de 671 registros, 11 artigos foram selecionados por meio de um processo
-  multietapas. Os resultados revelam uma dicotomia central: intervenções pedagógicas
-  inclusivas de alta eficácia, porém de pequena escala, e plataformas de larga escala
-  carentes de \textit{design} específico de gênero. Os temas centrais identificados incluem
-  gamificação narrativa, andaimes cognitivos, aprendizagem colaborativa e mentoria como
-  fatores de retenção feminina. Adicionalmente, duas publicações nacionais identificadas
-  na SBC Open Lib sinalizam uma comunidade científica brasileira em crescimento sobre
-  o tema.
+  A escassez global de profissionais de cibersegurança evidencia a urgência de ampliar a participação, especialmente de mulheres, que representam apenas 20--25\% da força de trabalho do setor. Este artigo apresenta uma Revisão Sistemática da Literatura (RSL) conduzida para mapear o estado da arte sobre programas de capacitação em cibersegurança com perspectiva de inclusão de gênero. Seguindo o protocolo PRISMA e o \textit{framework} PICO \cite{Schardt2007}, foram consultadas cinco bases de dados (IEEE Xplore, Scopus, Google Scholar, ACM Digital Library e SBC Open Lib), abrangendo publicações de 2020 a 2025. De um conjunto inicial de 671 registros, 11 artigos foram selecionados por meio de um processo multietapas. Os resultados revelam uma dicotomia central: intervenções pedagógicas inclusivas de alta eficácia, porém de pequena escala, e plataformas de larga escala carentes de \textit{design} específico de gênero. Os temas centrais identificados incluem gamificação narrativa, andaimes cognitivos, aprendizagem colaborativa e mentoria como fatores de retenção feminina. Adicionalmente, duas publicações nacionais identificadas na SBC Open Lib sinalizam uma comunidade científica brasileira em crescimento sobre o tema.
 \end{resumo}
 
 
@@ -64,61 +49,32 @@
 \section{Introdução}
 % ============================================================
 
-A cibersegurança consolidou-se como setor estratégico global, porém enfrenta um déficit
-persistente de profissionais qualificados. A força de trabalho global em 2024 somou
-5,47 milhões de profissionais, crescendo apenas 0,1\% em relação a 2023
-\cite{ISC2_2024}. Neste cenário, a sub-representação feminina configura tanto um
-desperdício de talentos quanto uma barreira à resiliência cibernética: mulheres
-representam entre 20\% e 25\% dos profissionais do setor e apenas 17\% dos cargos de
-liderança executiva \cite{ISC2_2025, Fortinet2025}.
+A cibersegurança consolidou-se como setor estratégico global, porém enfrenta um déficit persistente de profissionais qualificados. A força de trabalho global em 2024 somou 5,47 milhões de profissionais, crescendo apenas 0,1\% em relação a 2023 \cite{ISC2_2024}. Neste cenário, a sub-representação feminina configura tanto um desperdício de talentos quanto uma barreira à resiliência cibernética: mulheres representam entre 20\% e 25\% dos profissionais do setor e apenas 17\% dos cargos de liderança executiva \cite{ISC2_2025, Fortinet2025}.
 
-Este fenômeno é descrito na literatura como \textit{leaky pipeline}, refletindo que as
-taxas de evasão femininas superam as masculinas à medida que o nível técnico e a
-competitividade aumentam \cite{Pitman2022}. As barreiras não são apenas técnicas, mas
-estruturais, culturais e pedagógicas: incluem estereótipos de gênero, ausência de modelos
-de referência (\textit{role models}) e mecanismos de gamificação competitiva que podem
-inadvertidamente elevar a ansiedade de performance de grupos sub-representados
-\cite{SelmanHousein2025, Hogan2025, Horcher2021}.
+Este fenômeno é descrito na literatura como Vazamento de Talentos (\textit{leaky pipeline}), refletindo que as taxas de evasão femininas superam as masculinas à medida que o nível técnico e a competitividade aumentam \cite{Pitman2022}. As barreiras não são apenas técnicas, mas estruturais, culturais e pedagógicas: incluem estereótipos de gênero, ausência de modelos de referência (\textit{role models}) e mecanismos de gamificação competitiva que podem inadvertidamente elevar a ansiedade de performance de grupos sub-representados \cite{SelmanHousein2025, Hogan2025, Horcher2021} bem como exacerbar a insegurança e a baixa sensação de autoeficácia \cite{Kanij2025}.
 
-No Brasil, o Programa \textit{Hackers} do Bem --- iniciativa financiada pelo Ministério
-da Ciência, Tecnologia e Inovações (MCTI) e executada pela Rede Nacional de Ensino e
-Pesquisa (RNP) --- registrou 22,45\% de inscritas mulheres em um total de 150.832
-inscritos. Esse percentual cai para aproximadamente 13\% nas fases especializadas do
-programa \cite{HackersDoBemManual}, evidenciando a materialização local do fenômeno
-global.
+No contexto das trajetórias femininas, a autoeficácia é definida na literatura como a crença das mulheres em sua própria capacidade de organizar e executar ações necessárias para alcançar determinados resultados, configurando-se como um importante preditor do engajamento, da persistência e do sucesso em carreiras tecnológicas \cite{Pacheco2024}. No contexto específico da cibersegurança, mulheres frequentemente relatam níveis inferiores de autoeficácia em comparação aos seus pares masculinos, o que pode resultar em uma postura de maior aversão ao risco e limitar a progressão na carreira, independentemente da competência real adquirida \cite{SelmanHousein2025}.
 
-Neste contexto, o presente artigo apresenta os resultados de uma Revisão Sistemática da
-Literatura (RSL) para mapear o estado da arte sobre iniciativas, programas e abordagens
-pedagógicas voltadas à inclusão e retenção de mulheres em programas de capacitação em
-cibersegurança. A revisão, originalmente conduzida nas bases IEEE Xplore, Scopus, Google
-Scholar e ACM, foi expandida para incluir a SBC Open Lib, identificando produções
-nacionais sobre o tema. As questões de pesquisa que orientam o mapeamento são:
+No Brasil, o Programa \textit{Hackers} do Bem, iniciativa financiada pelo Ministério da Ciência, Tecnologia e Inovações (MCTI) e executada pela Rede Nacional de Ensino e Pesquisa (RNP), registrou 22,45\% de inscritas mulheres em um total de 150.832 inscritos. Esse percentual cai para aproximadamente 13\% nas fases especializadas do programa \cite{HackersDoBemManual}, evidenciando a materialização local do fenômeno global.
+
+Neste contexto, o presente artigo apresenta os resultados de uma Revisão Sistemática da Literatura (RSL) para mapear o estado da arte sobre iniciativas, programas e abordagens pedagógicas voltadas à inclusão e retenção de mulheres em programas de capacitação em cibersegurança. A revisão, originalmente conduzida nas bases IEEE Xplore, Scopus, Google Scholar e ACM. As questões de pesquisa que orientam o mapeamento são:
 
 \begin{itemize}
-  \item \textbf{QP1:} Quais fatores socioculturais e estruturais são determinantes para
-  a baixa adesão e permanência feminina em programas de capacitação em cibersegurança?
-  \item \textbf{QP2:} Quais abordagens pedagógicas impactam a adesão e a permanência do
-  público feminino?
-  \item \textbf{QP3:} Em que medida mecanismos colaborativos e de mentoria influenciam
-  a autoeficácia e a intenção de permanência das estudantes?
+  \item \textbf{QP1:} Quais fatores socioculturais e estruturais são determinantes para a permanência feminina em programas de capacitação em cibersegurança?
+  \item \textbf{QP2:} Quais abordagens pedagógicas impactam a permanência do público feminino?
+  \item \textbf{QP3:} Em que medida mecanismos colaborativos e de mentoria influenciam a autoeficácia e a permanência das estudantes?
 \end{itemize}
 
-O restante do artigo está organizado da seguinte forma: a Seção~\ref{sec:metodo}
-descreve a metodologia da RSL; a Seção~\ref{sec:resultados} apresenta os trabalhos
-selecionados; a Seção~\ref{sec:analise} realiza a análise multidimensional e discute
-lacunas; e a Seção~\ref{sec:conclusao} traz as considerações finais.
+O restante do artigo está organizado da seguinte forma: a Seção~\ref{sec:metodo} descreve a metodologia da RSL; a Seção~\ref{sec:resultados} apresenta os trabalhos selecionados; a Seção~\ref{sec:analise} realiza a análise multidimensional e discute lacunas; e a Seção~\ref{sec:conclusao} traz as considerações finais.
 
 
 % ============================================================
 \section{Metodologia} \label{sec:metodo}
 % ============================================================
 
-A RSL foi conduzida seguindo as diretrizes do protocolo PRISMA (\textit{Preferred
-Reporting Items for Systematic Reviews and Meta-Analyses}) \cite{Page2021}, garantindo
-transparência, qualidade e replicabilidade. O protocolo de busca foi estruturado com
-base no \textit{framework} PICO, conforme a Tabela~\ref{tab:pico}.
+A RSL foi conduzida seguindo as diretrizes do protocolo PRISMA (\textit{Preferred Reporting Items for Systematic Reviews and Meta-Analyses}), garantindo transparência, qualidade e replicabilidade. O protocolo de busca foi estruturado com base no \textit{framework} PICO (\textit{Population, Intervention, Comparison, Outcome}) \cite{Schardt2007}, conforme a Tabela~\ref{tab:pico}.
 
-\begin{table}[ht]
+\begin{table}[H]
 \centering
 \caption{Estratégia PICO utilizada na revisão sistemática}
 \label{tab:pico}
@@ -139,10 +95,7 @@ base no \textit{framework} PICO, conforme a Tabela~\ref{tab:pico}.
 
 \subsection{Bases de Dados e \textit{String} de Busca}\label{subsec:bases}
 
-Foram consultadas cinco bases de dados: IEEE Xplore, Scopus, Google Scholar, ACM
-Digital Library e SBC Open Lib. O período de cobertura foi de 2020 a 2025, limitando-se
-a artigos completos publicados em periódicos ou eventos. A \textit{string} de busca
-aplicada nas bases de idioma inglês foi:
+Foram consultadas quatro bases de dados: IEEE Xplore, Scopus, Google Scholar e ACM Digital Library. O período de cobertura foi de 2020 a 2025, limitando-se a artigos completos publicados em periódicos ou eventos. A \textit{string} de busca aplicada nas bases foi:
 
 \begin{quote}
 \small\textit{(\textquotedbl women\textquotedbl{} OR \textquotedbl girls\textquotedbl{}
@@ -156,37 +109,18 @@ security\textquotedbl{}) AND (\textquotedbl inclusion\textquotedbl{} OR
 \textquotedbl workshop\textquotedbl{} OR \textquotedbl bootcamp\textquotedbl{})}
 \end{quote}
 
-Na SBC Open Lib, a busca foi realizada com termos adaptados ao português:
-\textit{(mulher OR gênero OR feminino) AND (cibersegurança OR segurança da informação)
-AND (inclusão OR capacitação OR formação OR mentoria)}.
-
-Cabe destacar que a busca no Google Scholar foi limitada a 50 resultados, em razão de
-restrições técnicas da plataforma: ao contrário das demais bases consultadas, o Google
-Scholar não oferece suporte nativo a operadores booleanos estruturados (OR, AND) de forma
-equivalente às interfaces avançadas de busca, nem mecanismo de exportação em massa dos
-registros identificados. Essa limitação impede a recuperação sistemática de grandes
-volumes de resultados e compromete a rastreabilidade exigida pelo protocolo PRISMA.
-Optou-se, portanto, por restringir a coleta aos 50 primeiros resultados, priorizando a
-replicabilidade e a coerência metodológica. A inclusão do Google Scholar mesmo com esta
-restrição foi mantida para ampliar a cobertura de literatura cinzenta e trabalhos não
-indexados nas demais bases.
+Cabe destacar que a busca no Google Scholar foi limitada a 50 resultados, em razão de restrições técnicas da plataforma: ao contrário das demais bases consultadas, o Google Scholar não oferece suporte nativo a operadores booleanos estruturados (OR, AND) de forma equivalente às interfaces avançadas de busca, nem mecanismo de exportação em massa dos registros identificados. Essa limitação impede a recuperação sistemática de grandes volumes de resultados e compromete a rastreabilidade exigida pelo protocolo PRISMA. Optou-se, portanto, por restringir a coleta aos 50 primeiros resultados, priorizando a replicabilidade e a coerência metodológica. A inclusão do Google Scholar mesmo com esta restrição foi mantida para ampliar a cobertura de literatura cinzenta e trabalhos não indexados nas demais bases.
 
 \subsection{Critérios de Inclusão e Exclusão}\label{subsec:criterios}
 
-Para garantir a replicabilidade do processo de seleção, os critérios de inclusão (CI) e
-exclusão (CE) foram definidos \textit{a priori}, antes da execução das buscas, em
-conformidade com as diretrizes PRISMA \cite{Page2021}. Os critérios foram aplicados
-sequencialmente por fase: na Fase~1, com base no título; na Fase~2, com base no resumo;
-e na Fase~3, com base na leitura integral do artigo. A identificação de qualquer critério
-de exclusão dispensava a análise dos critérios subsequentes para o mesmo registro. A
-Tabela~\ref{tab:criterios} apresenta os critérios organizados por fase.
+Para garantir a replicabilidade do processo de seleção, os critérios de inclusão (CI) e exclusão (CE) foram definidos \textit{a priori}, antes da execução das buscas, em conformidade com as diretrizes PRISMA \cite{Page2021}. Os critérios foram aplicados sequencialmente por fase: na Fase~1, com base no título; na Fase~2, com base no resumo; e na Fase~3, com base na leitura integral do artigo. A identificação de qualquer critério de exclusão dispensava a análise dos critérios subsequentes para o mesmo registro. A Tabela~\ref{tab:criterios} apresenta os critérios organizados por fase.
 
-\begin{table}[ht]
+\begin{table}[H]
 \centering
 \caption{Critérios de inclusão (CI) e exclusão (CE) por fase de triagem}
 \label{tab:criterios}
 \small
-\begin{tabular}{c|l|p{5.8cm}}
+\begin{tabularx}{\textwidth}{c|l|X}
 \toprule
 \textbf{ID} & \textbf{Tipo} & \textbf{Critério} \\
 \midrule
@@ -215,7 +149,7 @@ CE-10 & Exclusão & Estudo secundário (RSL, \textit{scoping review}, revisão n
 CE-11 & Exclusão & Proposta teórica, \textit{framework} ou recomendações sem validação empírica. \\
 CE-12 & Exclusão & Descreve ação ou adaptação, mas não avalia impacto com dados. \\
 \bottomrule
-\end{tabular}
+\end{tabularx}
 \end{table}
 
 \subsection{Processo de Seleção}
@@ -259,7 +193,7 @@ Tabela~\ref{tab:selecao}.
 \centering
 % Nota: converter o arquivo SVG para PDF antes de compilar com pdflatex:
 %   inkscape --export-pdf=figs/prisma_flowchart_rsl.pdf figs/prisma_flowchart_rsl.svg
-\includegraphics[width=0.92\textwidth]{figs/prisma_flowchart_rsl}
+\includegraphics[width=0.92\textwidth]{figs/prisma_flowchart.png}
 \caption{Fluxograma PRISMA do processo de seleção — bases internacionais (661 registros iniciais)}
 \label{fig:prisma}
 \end{figure}
@@ -267,7 +201,7 @@ Tabela~\ref{tab:selecao}.
 A Tabela~\ref{tab:selecao} detalha a distribuição dos registros por base de dados ao
 longo do funil de seleção, incluindo a busca complementar na SBC Open Lib.
 
-\begin{table}[ht]
+\begin{table}[H]
 \centering
 \caption{Processo de seleção dos artigos por base de dados}
 \label{tab:selecao}
@@ -435,7 +369,7 @@ Os trabalhos foram avaliados em cinco dimensões derivadas das questões de pesq
 \textbf{Avaliação Empírica}. A Tabela~\ref{tab:comparacao} sintetiza a comparação
 qualitativa dos trabalhos nessas dimensões.
 
-\begin{table}[ht]
+\begin{table}[H]
 \centering
 \caption{Comparação dos trabalhos selecionados por dimensão de análise}
 \label{tab:comparacao}
