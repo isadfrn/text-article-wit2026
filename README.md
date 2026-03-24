@@ -1,4 +1,4 @@
-# GDC in RISC-V Assembly
+# Article: WIT 2026
 
 ![Languages used](https://img.shields.io/github/languages/count/isadfrn/text-article-wit2026?style=flat-square)
 ![Repository size](https://img.shields.io/github/repo-size/isadfrn/text-article-wit2026?style=flat-square)
