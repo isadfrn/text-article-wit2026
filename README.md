@@ -55,7 +55,7 @@ I thank you in advance for any contribution.
 
 ## Status
 
-Maintaining
+Finished
 
 ## License
 
